@@ -33,11 +33,11 @@ view:
 
 ![](img/pcb.png)
 
-	optional frep arguments:  
-	`frep.py dpi`  
-	`frep.py dpi filename`  
+optional frep arguments:  
+`frep.py dpi`  
+`frep.py dpi filename`  
 
-# Usage
+## Usage
 
 Open a `feh` image viewer that reloads every few seconds  
 `feh --auto-zoon -R 2 &`
