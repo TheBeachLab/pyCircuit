@@ -64,14 +64,14 @@ ymin = frep['ymin']
 ymax = frep['ymax']
 units = float(frep['mm_per_unit'])
 delta = (25.4/dpi)/units
-x = arange(xmin,xmax,delta)
+x = arange(xmin,xmax,delta) # arange creates a int32 array by default
 y = flip(arange(ymin,ymax,delta),0)
 X = outer(ones(y.size),x)
 Y = outer(y,ones(x.size))
 if (len(frep['layers']) == 1):
    Z = frep['layers'][0]
    print("   z =",Z)
-   f = eval(frep['function']).astype(uint32)
+   f = eval(frep['function']).astype(uint32) # evals and stores as 32 bit integer
 else:
    f = zeros((y.size,x.size),dtype=uint32)
    zmin = min(frep['layers'])
@@ -86,9 +86,18 @@ else:
 # construct image
 #
 
+# create an array of 3 matrix made of 8 bits unsigned integers, each one y rows and x columns, populate with zeroes (black)
+# each matrix holds values or R,G,B. Using channels-last convention
+
 m = zeros((y.size,x.size,3),dtype=uint8)
-m[:,:,0] = (f & 255)
-m[:,:,1] = ((f >> 8) & 255)
-m[:,:,2] = ((f >> 16) & 255)
+
+# put back the 24 bit decimal value to R, G and B channels
+# is f made out of zeros and ones?
+m[:,:,0] = (f & 255) # Red channel.  255 = 1111 1111 operator & is a mask to get the 8 first bits
+m[:,:,1] = ((f >> 8) & 255) # Green
+m[:,:,2] = ((f >> 16) & 255) # Blue
+
+# generates a RGB image from the matrix
 im = Image.fromarray(m,'RGB')
+# save the image, and append the xy dpi values
 im.save(filename,dpi=[dpi,dpi])

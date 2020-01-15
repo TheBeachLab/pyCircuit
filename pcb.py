@@ -22,8 +22,8 @@
 # uncomment for desired output:
 #
 
-#output = "top, labels, and exterior"
-output = "top, labels, holes, and exterior"
+output = "top, labels, and exterior"
+#output = "top, labels, holes, and exterior"
 #output = "top, bottom, labels, and exterior"
 #output = "top, bottom, labels, holes, and exterior"
 #output = "top traces"
@@ -92,15 +92,19 @@ import math,json,sys
 # shear_x_y(part,y0,y1,dx0,dx1)
 # shear_x_z(part,z0,z1,dx0,dx1)
 
+# True / False vars to str
+
 true = "1"
 false = "0"
 
 def color(color,part):
-   part = '('+str(color)+'*(('+part+')!=0))'
+   part = '('+str(color)+'*(('+part+')!=0))' # part = (
    return part
 
-Red = (225 << 0)
-Green = (225 << 8)
+# bitwise 24 bit decimal Color vars
+
+Red = (225 << 0) # not true red, washed out
+Green = (225 << 8) # move 225 8 bits left
 Blue = (225 << 16)
 Gray = (128 << 16) + (128 << 8) + (128 << 0)
 White = (255 << 16) + (255 << 8) + (255 << 0)
@@ -111,12 +115,14 @@ Brown = (45 << 16) + (82 << 8) + (145 << 0)
 Navy = (128 << 16) + (0 << 8) + (0 << 0)
 Tan = (60 << 16) + (90 << 8) + (125 << 0)
 
-def circle(x0,y0,r):
-   part = "(((X-(x0))*(X-(x0)) + (Y-(y0))*(Y-(y0))) <= (r*r))"
-   part = part.replace('x0',str(x0))
+# circle center x0,y0 radius r
+
+def circle(x0,y0,r): 
+   part = "(((X-(x0))*(X-(x0)) + (Y-(y0))*(Y-(y0))) <= (r*r))" # STRING (X-x0)**2 + (Y-y0)**2 <= r**2
+   part = part.replace('x0',str(x0)) # in the above string replaces x0 by the actual value of x0
    part = part.replace('y0',str(y0))
    part = part.replace('r',str(r))
-   return part
+   return part # returns the string
 
 def cylinder(x0,y0,z0,z1,r):
    part = "(((X-(x0))*(X-(x0)) + (Y-(y0))*(Y-(y0)) <= (r*r)) & (Z >= (z0)) & (Z <= (z1)))"
