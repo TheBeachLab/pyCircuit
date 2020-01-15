@@ -2,7 +2,7 @@
 
 Forked from [https://gitlab.cba.mit.edu/pub/libraries/tree/master/python](https://gitlab.cba.mit.edu/pub/libraries/tree/master/python)
 
-Inspired by [kokopelli](https://github.org/mkeeter/kokopelli) 
+Inspired by [kokopelli](https://github.com/mkeeter/kokopelli) 
 
 ## WTF is this shit?
 
