@@ -6969,7 +6969,7 @@ pcb = wire(pcb,w,
    J1.pad[4])
    
 pcb = wire(pcb,w,
-   IC1.pad[4],
+        IC1.pad[4],
    point(J1.pad[5].x,IC1.pad[4].y),
    J1.pad[5])
 
