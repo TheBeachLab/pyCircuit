@@ -20,7 +20,7 @@ The script `trigger.sh` contains:
 
 `python pcb.py | python frep.py 300`
 
-`pcb.py` creates a functional representation of the circuit board and saves it in json format. The ouput is passed to `frep.py` which evaluates the functions and generates an RGB matrix which is saved as an image.  
+`pcb.py` creates a functional representation of the circuit board and saves it in json format. The ouput is passed to `frep.py` which evaluates the functions and generates an RGB matrix which is saved as an image at 300 dpi (bigger than that becomes too slow).  
 
 view:  
 `out.png`
@@ -34,7 +34,7 @@ optional frep arguments:
 ## Usage
 
 Open a `feh` image viewer that reloads every few seconds  
-`feh --auto-zoon -R 2 &`
+`feh out.png --auto-zoom -R 2 &`
 
 Open `pcb.py` in vim and start editing. When you want to refresh the image press `F4`.  
 

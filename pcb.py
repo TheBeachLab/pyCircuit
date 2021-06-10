@@ -22,10 +22,10 @@
 # uncomment for desired output:
 #
 
-output = "top, labels, and exterior"
+#output = "top, labels, and exterior"
 #output = "top, labels, holes, and exterior"
 #output = "top, bottom, labels, and exterior"
-#output = "top, bottom, labels, holes, and exterior"
+output = "top, bottom, labels, holes, and exterior"
 #output = "top traces"
 #output = "top traces and exterior"
 #output = "bottom traces reversed"
@@ -954,6 +954,8 @@ class text:
       # color
       #
       self.shape = '('+str(color)+'*(('+self.shape+')!=0))'
+
+
 
 #
 # PCB classes and definitions
